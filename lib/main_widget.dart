@@ -9,12 +9,13 @@ class Mainwidget extends StatefulWidget {
 }
 
 class _MainwidgetState extends State<Mainwidget> {
-  String text = "Simple Text";
-  List<String> todoList = ["Drink", "Eat", "Sleep"];
-  void changeText({required String todoText}) {
+  List<String> todoList = [];
+
+  void addTodo({required String todoText}) {
     setState(() {
-      text = todoText;
+      todoList.insert(0, todoText);
     });
+    Navigator.pop(context);
   }
 
   @override
@@ -39,7 +40,7 @@ class _MainwidgetState extends State<Mainwidget> {
                         padding: EdgeInsets.all(20),
                         height: 190,
                         child: AddToDo(
-                          changeText: changeText,
+                          addTodo: addTodo,
                         ),
                       ),
                     );
@@ -58,8 +59,33 @@ class _MainwidgetState extends State<Mainwidget> {
           itemCount: todoList.length,
           itemBuilder: (context, index) {
             return ListTile(
-              onTap: () {},
-              title: Text(todoList[index]),
+              onTap: () {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.all(20),
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.green),
+                            onPressed: () {
+                              setState(() {
+                                todoList.removeAt(index);
+                              });
+                              Navigator.pop(context);
+                            },
+                            child: Text(
+                              "Mark as Done!",
+                              style: TextStyle(color: Colors.white),
+                            )),
+                      );
+                    });
+              },
+              title: Text(
+                todoList[index],
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             );
           }),
     );
