@@ -18,14 +18,30 @@ class _MainwidgetState extends State<Mainwidget> {
         centerTitle: true,
         title: Text("To Do App"),
         actions: [
-          Padding(
-            padding: EdgeInsets.all(8),
-            child: Icon(
-              Icons.add,
+          InkWell(
+            onTap: () {
+              showModalBottomSheet(
+                  context: context,
+                  builder: (context) {
+                    return Container(
+                      height: 250,
+                    );
+                  });
+            },
+            child: Padding(
+              padding: EdgeInsets.all(8),
+              child: Icon(
+                Icons.add,
+              ),
             ),
           ),
         ],
       ),
+      body: GestureDetector(
+          onTap: () {
+            print("Body");
+          },
+          child: Text("Body")),
     );
   }
 }
