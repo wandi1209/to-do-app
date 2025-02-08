@@ -9,6 +9,14 @@ class Mainwidget extends StatefulWidget {
 }
 
 class _MainwidgetState extends State<Mainwidget> {
+  String text = "Simple Text";
+
+  void changeText({required String todoText}) {
+    setState(() {
+      text = todoText;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,11 +31,17 @@ class _MainwidgetState extends State<Mainwidget> {
             onTap: () {
               showModalBottomSheet(
                   context: context,
+                  isScrollControlled: true,
                   builder: (context) {
-                    return Container(
-                      padding: EdgeInsets.all(20),
-                      height: 200,
-                      child: AddToDo(),
+                    return Padding(
+                      padding: MediaQuery.of(context).viewInsets,
+                      child: Container(
+                        padding: EdgeInsets.all(20),
+                        height: 190,
+                        child: AddToDo(
+                          changeText: changeText,
+                        ),
+                      ),
                     );
                   });
             },
@@ -40,7 +54,9 @@ class _MainwidgetState extends State<Mainwidget> {
           ),
         ],
       ),
-      body: Container(),
+      body: Container(
+        child: Text(text),
+      ),
     );
   }
 }
