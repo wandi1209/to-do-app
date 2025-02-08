@@ -11,8 +11,20 @@ class _MainwidgetState extends State<Mainwidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: Text("Drawer Data"),
+      ),
       appBar: AppBar(
+        centerTitle: true,
         title: Text("To Do App"),
+        actions: [
+          Padding(
+            padding: EdgeInsets.all(8),
+            child: Icon(
+              Icons.add,
+            ),
+          ),
+        ],
       ),
     );
   }
