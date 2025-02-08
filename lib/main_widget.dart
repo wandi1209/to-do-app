@@ -10,7 +10,7 @@ class Mainwidget extends StatefulWidget {
 
 class _MainwidgetState extends State<Mainwidget> {
   String text = "Simple Text";
-
+  List<String> todoList = ["Drink", "Eat", "Sleep"];
   void changeText({required String todoText}) {
     setState(() {
       text = todoText;
@@ -54,9 +54,14 @@ class _MainwidgetState extends State<Mainwidget> {
           ),
         ],
       ),
-      body: Container(
-        child: Text(text),
-      ),
+      body: ListView.builder(
+          itemCount: todoList.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              onTap: () {},
+              title: Text(todoList[index]),
+            );
+          }),
     );
   }
 }
