@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp/add_to_do.dart';
 
 class Mainwidget extends StatefulWidget {
   const Mainwidget({super.key});
@@ -24,7 +25,9 @@ class _MainwidgetState extends State<Mainwidget> {
                   context: context,
                   builder: (context) {
                     return Container(
-                      height: 250,
+                      padding: EdgeInsets.all(20),
+                      height: 200,
+                      child: AddToDo(),
                     );
                   });
             },
@@ -37,11 +40,7 @@ class _MainwidgetState extends State<Mainwidget> {
           ),
         ],
       ),
-      body: GestureDetector(
-          onTap: () {
-            print("Body");
-          },
-          child: Text("Body")),
+      body: Container(),
     );
   }
 }
